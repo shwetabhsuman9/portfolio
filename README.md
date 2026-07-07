@@ -9,14 +9,19 @@ nothing to edit.
 
 ```
 portfolio/
-├─ index.html      ← page structure (you shouldn't need to touch this)
-├─ style.css       ← all visual design (colors, fonts, layout, animation)
-├─ config.js       ← ALL your content: name, bio, jobs, skills, links...
-├─ script.js       ← the logic (renders config.js into the page, GitHub fetch)
-├─ favicon.svg     ← browser tab icon
-├─ README.md       ← this file
-└─ DEPLOY.md       ← how to publish it live + connect a custom domain
+├─ docs/               ← this is the folder GitHub Pages actually publishes
+│  ├─ index.html       ← page structure (you shouldn't need to touch this)
+│  ├─ style.css        ← all visual design (colors, fonts, layout, animation)
+│  ├─ config.js        ← ALL your content: name, bio, jobs, skills, links...
+│  ├─ script.js        ← the logic (renders config.js into the page, GitHub fetch)
+│  └─ favicon.svg      ← browser tab icon
+├─ README.md           ← this file — stays private to the repo, not published
+└─ DEPLOY.md           ← deploy guide — stays private to the repo, not published
 ```
+
+Everything inside `docs/` is what visitors see live. `README.md` and
+`DEPLOY.md` live outside it on purpose — see the note in `DEPLOY.md` about
+why, and how that keeps them off the public site.
 
 ---
 
@@ -28,14 +33,14 @@ So you need one small local web server. Pick whichever you have installed:
 
 **Option A — Python (most machines already have this)**
 ```bash
-cd portfolio
+cd portfolio/docs
 python3 -m http.server 8000
 ```
 Open **http://localhost:8000** in your browser.
 
 **Option B — Node.js**
 ```bash
-cd portfolio
+cd portfolio/docs
 npx serve .
 ```
 It will print a local URL to open (usually http://localhost:3000).
@@ -68,7 +73,7 @@ any text editor. It's one JavaScript object with plain fields:
 Save the file and refresh the browser — no build step required.
 
 ### Adding your resume PDF
-Drop a PDF into the `portfolio/` folder (same level as `index.html`) and set
+Drop a PDF into the `portfolio/docs/` folder (same level as `index.html`) and set
 `resumeFile` in `config.js` to match its exact filename, e.g.:
 ```js
 resumeFile: "Shwetabh_Suman_Resume.pdf",

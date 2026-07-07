@@ -17,7 +17,8 @@ Skip to Part 2 if this repo already exists on GitHub.
    exactly, GitHub Pages skips a step later and serves it at your domain root).
 3. Leave it **Public**, don't initialize with a README (you already have one).
 4. Click **Create repository**. GitHub will show you commands — from inside
-   your `portfolio` folder, run:
+   your `portfolio` folder (the one containing `docs/`, `README.md` and this
+   file), run:
 
 ```bash
 cd portfolio
@@ -35,12 +36,22 @@ Replace `<your-username>` with your actual GitHub handle.
 
 ## Part 2 — Go live for free with GitHub Pages
 
+> **Why `/docs` and not the repo root?** This repo has `README.md` and
+> `DEPLOY.md` sitting next to the `docs/` folder. If GitHub Pages published
+> the whole repo root, both of those files would be publicly fetchable at
+> your live URL (e.g. `yoursite.com/DEPLOY.md`). Pointing Pages at `/docs`
+> instead means only what's inside `docs/` — the actual site — ever gets
+> published; the two guide files stay visible only on the GitHub repo page
+> itself, not on your live site.
+
 1. On your repo's GitHub page, click **Settings** (top tab).
 2. In the left sidebar, click **Pages**.
 3. Under **Build and deployment → Source**, choose **Deploy from a branch**.
-4. Under **Branch**, choose `main` and folder `/ (root)` → **Save**.
+4. Under **Branch**, choose `main` and folder **`/docs`** (not root) → **Save**.
 5. Wait ~1 minute, then refresh the page. GitHub shows a green box:
    *"Your site is live at `https://<your-username>.github.io/portfolio/`"*.
+6. Visit that URL and confirm `/README.md` and `/DEPLOY.md` are **not**
+   reachable there — only `docs/`'s contents are served.
 
 That URL is now your real, public portfolio. Share it as-is, or continue to
 Part 3 for a custom domain.
@@ -125,7 +136,9 @@ If you'd rather manage the domain connection through a friendlier dashboard
 than raw DNS records, both **netlify.com** and **vercel.com** offer:
 
 1. "Import from GitHub" — connect the same `portfolio` repo, no build
-   command needed (leave publish directory as `/`).
+   command needed, but set the **publish directory** to `docs` (same
+   reasoning as the GitHub Pages step above — it keeps `README.md` and
+   `DEPLOY.md` off the live site).
 2. Free auto-deploys on every `git push`, same as GitHub Pages.
 3. A **Domains** tab where you paste your domain and they either generate
    the exact DNS records for you, or let you buy the domain through them
@@ -139,8 +152,8 @@ dashboard you find easier to navigate.
 ## Troubleshooting
 
 - **404 at the GitHub Pages URL:** confirm Settings → Pages shows a green
-  "your site is live" banner, and that `index.html` sits at the repo root
-  (not inside a subfolder).
+  "your site is live" banner, and that the source folder is set to `/docs`
+  (not root) — `index.html` lives inside `docs/`, not the repo root.
 - **Domain loads but shows GitHub's 404:** the `CNAME` file content doesn't
   match what you typed in Settings → Pages — re-save the custom domain field.
 - **"Not Secure" warning:** HTTPS hasn't finished provisioning yet — wait a

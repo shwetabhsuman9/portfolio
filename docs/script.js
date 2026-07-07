@@ -275,6 +275,23 @@
   }
 
   /* ------------------------------------------------------------------ */
+  /*  Scroll-to-top (logo + footer link)                                 */
+  /*  The header is position:sticky, so the browser's native #top anchor  */
+  /*  jump thinks it's "already in view" and often refuses to scroll.     */
+  /*  Handling it manually here makes it reliable everywhere.             */
+  /* ------------------------------------------------------------------ */
+  function initScrollToTop() {
+    const behavior = prefersReducedMotion ? "auto" : "smooth";
+    $$('a[href="#top"]').forEach(link => {
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior });
+        history.replaceState(null, "", window.location.pathname + window.location.search);
+      });
+    });
+  }
+
+  /* ------------------------------------------------------------------ */
   /*  Copy email                                                          */
   /* ------------------------------------------------------------------ */
   function initCopyEmail() {
@@ -314,6 +331,7 @@
     renderFlagship();
     renderEducation();
     initNav();
+    initScrollToTop();
     initCopyEmail();
     startTyping();
     observeReveals();
