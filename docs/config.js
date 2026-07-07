@@ -31,7 +31,7 @@ const CONFIG = {
   linkedin: "https://www.linkedin.com/in/shwetabh-suman",
   github: "https://github.com/shwetabhsuman9",
   githubUsername: "shwetabhsuman9",   // used to auto-pull public repos, see below
-  resumeFile: "Shwetabh_Suman_Resume.pdf", // drop a PDF with this exact name next to index.html
+  resumeFile: "Shwetabh_suman_resume.pdf", // drop a PDF with this exact name next to index.html
 
   // ---------- Summary ----------
   summary: `Full-stack software engineer with 4+ years building fintech products
